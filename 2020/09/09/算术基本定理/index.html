@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="wezhon.com">
   <title>什么是算术基本定理 | Wezhon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="每一个大于等于2的自然数都有一个素因子分解，而且分解是唯一的。  一个自然数的素因子分解指的是将它表示为素数的乘积形式，如$12&#x3D;2\times2\times3$。   唯一性指的是相差到素因子的排列次序的唯一性。如$12&#x3D;2\times2\times2\times3$和$12&#x3D;2\times3\times2$是同一个。">
+  <meta name="description" content="世界上所有的物体都是由分子组成，假如说我彻底了解了分子，那么我就了解了这个世界。同理，素数是构建正整数大厦的基石。从算术基本定理我们可以知道:如果给你所有的素数，那么你仅仅使用乘法就可以得到所有大于等于2的自然数。如果我们了解了素数所有特性，那么我们就知道了自然数的所有特性。这也是哥德巴赫猜想为什么被称为数学三大猜想德原因之一了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="什么是算术基本定理">
 <meta property="og:url" content="wezhon.com/2020/09/09/%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/index.html">
 <meta property="og:site_name" content="Wezhon">
-<meta property="og:description" content="每一个大于等于2的自然数都有一个素因子分解，而且分解是唯一的。  一个自然数的素因子分解指的是将它表示为素数的乘积形式，如$12&#x3D;2\times2\times3$。   唯一性指的是相差到素因子的排列次序的唯一性。如$12&#x3D;2\times2\times2\times3$和$12&#x3D;2\times3\times2$是同一个。">
+<meta property="og:description" content="世界上所有的物体都是由分子组成，假如说我彻底了解了分子，那么我就了解了这个世界。同理，素数是构建正整数大厦的基石。从算术基本定理我们可以知道:如果给你所有的素数，那么你仅仅使用乘法就可以得到所有大于等于2的自然数。如果我们了解了素数所有特性，那么我们就知道了自然数的所有特性。这也是哥德巴赫猜想为什么被称为数学三大猜想德原因之一了。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-09-09T04:30:48.000Z">
-<meta property="article:modified_time" content="2020-09-09T04:57:58.810Z">
+<meta property="article:modified_time" content="2020-09-10T02:08:52.835Z">
 <meta property="article:author" content="Wezhon Hsiang">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="初等数论">
@@ -204,13 +204,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>每一个大于等于2的自然数都有一个素因子分解，而且分解是唯一的。</strong></p>
-<blockquote>
+        <p>世界上所有的物体都是由分子组成，假如说我彻底了解了分子，那么我就了解了这个世界。<br>同理，素数是构建正整数大厦的基石。从算术基本定理我们可以知道:如果给你所有的素数，那么你仅仅使用乘法就可以得到所有大于等于2的自然数。如果我们了解了素数所有特性，那么我们就知道了自然数的所有特性。这也是<strong>哥德巴赫猜想</strong>为什么被称为数学三大猜想德原因之一了。</p>
+<a id="more"></a>
+
+<h3 id="算术基本定理-每一个大于等于2的自然数都有一个素因子分解，而且分解是唯一的。"><a href="#算术基本定理-每一个大于等于2的自然数都有一个素因子分解，而且分解是唯一的。" class="headerlink" title="算术基本定理:每一个大于等于2的自然数都有一个素因子分解，而且分解是唯一的。"></a><strong>算术基本定理:<span style="color:red">每一个大于等于2的自然数都有一个素因子分解，而且分解是唯一的。</span></strong></h3><blockquote>
 <p>一个自然数的<strong>素因子分解</strong>指的是将它表示为素数的乘积形式，如$12=2\times2\times3$。</p>
 </blockquote>
 <blockquote>
 <p>唯一性指的是相差到素因子的排列次序的唯一性。如$12=2\times2\times2\times3$和$12=2\times3\times2$是同一个。</p>
 </blockquote>
+<p><strong>求证1:如何$n$是合数，那么它有一个数因子。</strong></p>
+<p><strong>证明：</strong>如何$n$是合数，那么它至少有一个真因子$d$。令$d_{0}$是$n$的所有真因子中最小的一个。我们断言，$d_{0}$是素数。用反证法：假设$d_{0}$是合数，从而$d_{0}$有一个真因子$a$，这里$ 1\lt a \lt d_{0}$。现在$a|d_{0}$且$d_{0}|n$，得到$a|n$，这意味着$a$是$n$的真因子，而且比$d_{0}$小，这和$d_{0}$为$n$的最小真因子矛盾！所有假设不成立，由此得证，$d_{0}$是素数。这样，$n$有素因子$d_{0}$。</p>
+<p><strong>求证2:自然数的素因子分解</strong></p>
+<p><strong>证明：</strong>一般来说，设$n\geqslant 2$是一个给定的自然数。如果$n$是素数，那么他的素因子分解为$n=n\times 1$。如果$n$不是素数，那么它有一个素因子$p$。令$n=pA$，这里$A$是某个自然数。如何$A$是素数，那么分解已经完成。如果$A$不是素数，那么继续，$A$有一个素因子$q$，而$A=qB$，这里$B$是自然数，我们得到：<br>$$n = pqB$$<br>继续，如何$B$是一个素数，则$pqB$就是$n$的一个素因子分解。如果$B$不是素数，同理，它有一个素因子$r$，且$B=rC$，这里$C$是一个自然数。此时，我们有：<br>$$n=pqrC$$<br>如此反复。注意到，因为$A=qB$且$q \geqslant 2$，所有我们有$A \geqslant 2B$.同理$B \geqslant 2C$，等等。因此，我们得到一串正整数$A，B，C，···$，其中$B$至多是$A$的$\frac{1}{2}$，$C$至多是$B$的$\frac{1}{2}$从而至多为$A$的$\frac{1}{4}$，$D$至多为$C$的$\frac{1}{2}$从而至多是$A$的$\frac{1}{8}$。如此下去，这一串数字$A，B，C，···$必定在有限步以后终止，也就是说到某一步的时候一定为素数。</p>
+<p>例如$n\geqslant 2^{7}$，如果$n$在五步分解以后得到素因子$p，q，r，s，t$和自然数$E$：<br>$$n=pA=pqB=pqrC=qprsD=pqrstE$$<br>我们断言$E$为素数。反证法：不然，$E$可以继续分解为$E=uF$，这里$u$为素数，$F$是一个大于等于2的自然数，于是我们得到：<br>$$n=pqrstE=pqrstuF \geqslant 2 \times 2 \times 2 \times 2 \times 2 \times 2\times 2 = 2^{7}$$<br>即$n \geqslant 2^{7}$，这与前面多假定的$n \lt 2^{7}$矛盾！所有$E$为素数，而且$n=pqrstE$是$n$的一个素因子分解。证毕。</p>
+<p><strong>求证3:素因子分解的唯一性</strong></p>
+<blockquote>
+<p><strong>定理34.2：</strong>设$p$是素数，$a$和$b$是自然数，且$p|ab$，那么$p|a$或$p|b$</p>
+</blockquote>
+<p>这个证明就是著名的欧几里得算法。</p>
 
       
 
@@ -318,6 +330,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/09/10/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          欧几里得算法
+        
+      </div>
+    </a>
   
   
     <a href="/2020/09/08/%E7%B4%A0%E6%95%B0%E5%92%8C%E5%9B%A0%E5%AD%90%E7%9A%84%E5%AE%9A%E4%B9%89/" id="article-nav-older" class="article-nav-link-wrap">
