@@ -16,9 +16,10 @@
 <meta property="og:description" content="MathJax">
 <meta property="og:locale">
 <meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-10 下午4.32.01.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-11 下午1.44.53.png">
 <meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/fonts.png">
 <meta property="article:published_time" content="2020-09-10T06:02:47.000Z">
-<meta property="article:modified_time" content="2020-09-10T08:35:00.916Z">
+<meta property="article:modified_time" content="2020-09-11T05:51:23.534Z">
 <meta property="article:author" content="Wezhon Hsiang">
 <meta property="article:tag" content="计算机">
 <meta property="article:tag" content="数学">
@@ -219,7 +220,7 @@
 </ul>
 <p>例如：<code>$$x^&#123;y^z&#125; = (1 + &#123;\rm e&#125;^x)^&#123;-2xy^w&#125; $$</code></p>
 <p>显示效果<br>$$x^{y^z} = (1 + {\rm e}^x)^{-2xy^w} $$</p>
-<h3 id="括号和分隔符"><a href="#括号和分隔符" class="headerlink" title="括号和分隔符"></a>括号和分隔符</h3><p><code>()</code>、<code>[]</code>和<code>|</code>表示符号本身，<code>&#123;&#125;</code>需要使用<code>\</code>转义符，<code>\&#123;\&#125;</code>。</p>
+<h3 id="括号和分隔符、文字加框"><a href="#括号和分隔符、文字加框" class="headerlink" title="括号和分隔符、文字加框"></a>括号和分隔符、文字加框</h3><p><code>()</code>、<code>[]</code>和<code>|</code>表示符号本身，<code>&#123;&#125;</code>需要使用<code>\</code>转义符，<code>\&#123;\&#125;</code>。</p>
 <p>其它一些特殊的括号：</p>
 <table>
 <thead>
@@ -245,6 +246,7 @@
 <td align="center">$\lbrace 表达式 \rbrace$</td>
 </tr>
 </tbody></table>
+<p>文字加框 <code>\boxed&#123;文本&#125;</code><br>$$\boxed{Markdown}$$</p>
 <h3 id="分数和开方"><a href="#分数和开方" class="headerlink" title="分数和开方"></a>分数和开方</h3><p>通常使用<code>\frac&#123;分子&#125;&#123;分母&#125;</code>可嵌套<br>$$\frac{分子}{分母}$$<br><code>$\sqrt[根指数，2可省略]&#123;被开方数&#125;$</code><strong>如</strong><code>$\sqrt[110]&#123;119&#125;$</code><br>$$\sqrt[110]{119}$$</p>
 <h3 id="省略号"><a href="#省略号" class="headerlink" title="省略号"></a>省略号</h3><p>例子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$f(x_1,x_2,\underbrace&#123;\ldots&#125;_&#123;\rm ldots&#125; ,x_n) &#x3D; x_1^2 + x_2^2 + \underbrace&#123;\cdots&#125;_&#123;\rm cdots&#125; + x_n^2$$</span><br></pre></td></tr></table></figure>
@@ -290,7 +292,22 @@ $$\overleftarrow{xy} \quad and \quad \overleftrightarrow{xy} \quad and \quad \ov
 
 </li>
 </ul>
-<h3 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h3><p>输入<code>\小写希腊字母英文全称</code>和<code>\首字母大写希腊字母英文全称</code>来输入大小写希腊字母。有的大写希腊字母和现有字母相同的，直接输入字母即可。</p>
+<h3 id="等号对齐"><a href="#等号对齐" class="headerlink" title="等号对齐"></a>等号对齐</h3><p>使用<code>\begin&#123;align&#125;···\end&#123;align&#125;</code>的格式，其中需要<code>&amp;</code>指示要对齐的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;align&#125;</span><br><span class="line">\sqrt&#123;37&#125; &amp; &#x3D; \sqrt&#123;\frac&#123;73^2-1&#125;&#123;12^2&#125;&#125; \\</span><br><span class="line">&amp; &#x3D; \sqrt&#123;\frac&#123;73^2&#125;&#123;12^2&#125; \cdot \frac&#123;73^2-1&#125;&#123;73^2&#125;&#125; \\</span><br><span class="line">&amp; &#x3D; \frac&#123;73&#125;&#123;12&#125; \sqrt&#123;1 - \frac&#123;1&#125;&#123;73^2&#125;&#125; \\</span><br><span class="line">&amp; \approx \frac&#123;73&#125;&#123;12&#125; \left( 1 - \frac&#123;1&#125;&#123;2 \cdot 73^2&#125; \right)</span><br><span class="line">\end&#123;align&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<div style="display:none">
+$$
+\begin{align}
+\sqrt{37} & = \sqrt{\frac{73^2-1}{12^2}} \\
+& = \sqrt{\frac{73^2}{12^2} \cdot \frac{73^2-1}{73^2}} \\
+& = \frac{73}{12} \sqrt{1 - \frac{1}{73^2}} \\
+& \approx \frac{73}{12} \left( 1 - \frac{1}{2 \cdot 73^2} \right)
+\end{align}
+$$
+</div>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-11 下午1.44.53.png"/>
+### 希腊字母
+
+<p>输入<code>\小写希腊字母英文全称</code>和<code>\首字母大写希腊字母英文全称</code>来输入大小写希腊字母。有的大写希腊字母和现有字母相同的，直接输入字母即可。</p>
 <table>
 <thead>
 <tr>
@@ -702,6 +719,15 @@ $$\overleftarrow{xy} \quad and \quad \overleftrightarrow{xy} \quad and \quad \ov
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/09/11/Markdown%E6%B3%A8%E9%87%8A/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Markdown注释
+        
+      </div>
+    </a>
   
   
     <a href="/2020/09/10/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
