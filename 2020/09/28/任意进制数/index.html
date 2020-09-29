@@ -6,16 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="wezhon.com">
-  <title>Tag: 记录 | Wezhon</title>
+  <title>任意进制数的计算 | Wezhon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Wezhon">
-<meta property="og:url" content="wezhon.com/tags/%E8%AE%B0%E5%BD%95/index.html">
+  <meta name="description" content="本文主要讨论任意$b$进制数，其中$b$是正的任意自然数，且$b\gt 1$。我们将离开所熟悉的10进制的情况。通过阿拉伯记数法的算术性质开辟一个新的视野。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="任意进制数的计算">
+<meta property="og:url" content="wezhon.com/2020/09/28/%E4%BB%BB%E6%84%8F%E8%BF%9B%E5%88%B6%E6%95%B0/index.html">
 <meta property="og:site_name" content="Wezhon">
+<meta property="og:description" content="本文主要讨论任意$b$进制数，其中$b$是正的任意自然数，且$b\gt 1$。我们将离开所熟悉的10进制的情况。通过阿拉伯记数法的算术性质开辟一个新的视野。">
 <meta property="og:locale">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.47.00.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.51.19.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.52.38.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.53.33.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.55.28.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午10.03.13.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.55.28.png">
+<meta property="article:published_time" content="2020-09-28T03:32:53.000Z">
+<meta property="article:modified_time" content="2020-09-29T02:04:12.674Z">
 <meta property="article:author" content="Wezhon Hsiang">
-<meta property="article:tag" content="计算机、数学、阅读、跑步、骑行">
+<meta property="article:tag" content="数学，小学数学">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.47.00.png">
   
     <link rel="alternative" href="/atom.xml" title="Wezhon" type="application/atom+xml">
   
@@ -172,66 +184,448 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-任意进制数" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/21/%E6%88%91%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E4%B9%8B%E8%B7%AF/" class="archive-article-date">
-  	<time datetime="2020-09-21T04:29:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-21</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/21/%E6%88%91%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E4%B9%8B%E8%B7%AF/">我的互联网之路</a>
+    <h1 class="article-title" itemprop="name">
+      任意进制数的计算
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/09/28/%E4%BB%BB%E6%84%8F%E8%BF%9B%E5%88%B6%E6%95%B0/" class="archive-article-date">
+  	<time datetime="2020-09-28T03:32:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
+</a>
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文主要讨论任意$b$进制数，其中$b$是正的任意自然数，且$b\gt 1$。我们将离开所熟悉的10进制的情况。通过阿拉伯记数法的算术性质开辟一个新的视野。</p>
+<a id="more"></a>
+<h2 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h2><p><strong>数的展开式</strong>的概念：按10的降幂排列的倍数之和，并且与之相乘的数必须小于10。而这些与10的幂相乘的数，称为展开式中的系数。例如930819<br>$$9\cdot (10^5)+3\cdot (10^4)+0\cdot (10^3)+8\cdot(10^2)+1\cdot(10^1)+9\cdot(10^0)$$<br>关于<strong>幂</strong>和<strong>指数</strong>的定义<br>$$若n\gt0，则b^n=bb···b(n个b)\tag{1}$$<br>$$若n=0，则b^0=1\tag{2}$$<br>$$b^mb^n=b^{m+n} \tag{3}$$</p>
+<blockquote>
+<p>关于3式：<br>$$b^mb^n=b^m\times b^n=b(m个)\times b(n个)=b \times b···\times b(m+n个)=b^{m+n}$$</p>
+</blockquote>
+<p>我们可以将36402展开为任意自然数$b$的一些降幂排列的倍数$qb^m$之和，其中$q$和$m$为自然数，且$q\lt b$<br>$$36402=2\cdot(7^5)+1\cdot(7^4)+1\cdot(7^3)+0\cdot(7^2)+6\cdot(7^1)+2\cdot(7^0) \tag{4}$$<br>$$36402=1\cdot(12^4)+9\cdot(12^3)+0\cdot(12^2)+9\cdot(12^1)+6\cdot(12^0) \tag{5}$$<br>上面4式和5式分别叫做36402的七进制展开式和十二进制展开式。分别记做$(211062)_7$和$(19096)_{12}$。</p>
+<p>一般来说，当$b$为大于0的自然数，$n$为任意自然数，那么$b$的降幂排列的倍数和为：<br>$$a_n\cdot(b^n)+a_{n-1}\cdot(b^{n-1}+···+a_1\cdot(b^1)+a_0\cdot(b^0)$$<br>除了我们已经习惯了的十进制数，还有两个常见的$b$进制：$b=2$和$b=60$</p>
+<ul>
+<li>$b=2$我们习惯叫二进制。在计算机科学中有广泛的应用，计算机以字节为单位，并且每个字节只有两种可能0或1。另一方面，计算机有二极管构成，开或者关，分别用1或0表示。开和关就能组成最基本的逻辑门。</li>
+<li>对于$b=60$，巴比伦人在4000多年前就在使用。它叫六十进制数。比如$(25215)_{60}$秒，我们常常记做“2小时52分15秒“，比较有趣的是一个六十进制数可以非常得大。例如一个4为的六十进制数将十进制数的一千万还大。<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.47.00.png"/>
+<div style="display:none">
+$$
+\begin{align}
+(481731)\_{60}&=48\cdot(60^3)+17\cdot(60^2)+3\cdot(60^1)+1\cdot(60^0)\\
+&=10,429,381
+\end{align}
+$$
+</div>
+
+</li>
+</ul>
+<h2 id="展开式法则-七进制为例"><a href="#展开式法则-七进制为例" class="headerlink" title="展开式法则-七进制为例"></a>展开式法则-七进制为例</h2><p>关于展开式法则其实很简单，仅仅重复使用带余除法。先看一个简单的例子18，$18=2\cdot7+4$。我们就得到了$18=(24)_7$。另一个数123，运用带余除法可得$123=17\cdot7+4$，注意到$17\gt7$，所以还得再对17做一次带余除法$17=2\cdot7+3$。将$17=2\cdot7+3$代入$123=17\cdot7+4$可得：<br><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.51.19.png"/></p>
+<div style="display:none">
+$$
+\begin{align}
+123&=(2\cdot7+3)+4\\
+&=2\cdot(7^2)+3\cdot(7^1)+4\cdot(7^0)\\
+&=(234)_7
+\end{align}
+$$
+</div>
+再来一个稍微复杂一点的例子，将3644进行七进制张开：
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.52.38.png"/>
+<div style="display:none">
+$$
+\begin{align}
+3644&=520\cdot7+4\\
+520&=74\cdot7+2\\
+74&=10\cdot7+4\\
+10&=1\cdot7+3
+\end{align}
+$$
+</div>
+最后一个式子看到$1\lt7$，所以到这里就可以结束了。我们继续用下面一个式子替换上面的。将得到
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.53.33.png"/>
+<div style="display:none">
+$$
+\begin{align}
+3644&=520\cdot7+4\\
+&=(74\cdot7+2)\cdot7+4\\
+&=74\cdot7^2+2\cdot7+7\\
+&=(10\cdot7+4)\cdot7^2+2\cdot7+4\\
+&=10\cdot7^3+4\cdot7^2+2\cdot7+4\\
+&=(1.7+3)\cdot7^3+4\cdot7^2+2\cdot7+4\\
+&=1\cdot7^4+3\cdot7^3+4\cdot7^2+2\cdot7+4\\
+&=(13424)_7
+\end{align}
+$$
+</div>
+注意到$(3644)_{10}$的七进制展开式中的系数1，3，4，2，4中的3，4，2，4正是一两串带余除法的余数。
+
+<h2 id="七进制数的计算"><a href="#七进制数的计算" class="headerlink" title="七进制数的计算"></a>七进制数的计算</h2><p>给定任意两个七进制数，以$(103)_7$和$(242)_7$为例。求出它们的和，我们可以分别把它们转换为十进制的数，在十进制下求和。再把得到的和转换为七进制。<br>$$(103)_7+(242)_7=(345)_7$$<br>但是这样比较繁琐，想一想。十进制的计算方法，在七进制下同样可以使用。利用加法交换律和加法结合律可以得到。<br><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.55.28.png"/></p>
+<div style="display:none">
+$$
+\begin{align}
+(103)_7+(242)_7&=(1\cdot7^2+0\cdot7+3)+(2\cdot7^2+4\cdot7+2)\\
+&=(1\cdot7^2+2\cdot7^2)+(0\cdot7+4\cdot7)+(3+2)\\
+&=(1+2)\cdot7^2+(0+4)\cdot7+(3+2)\\
+&=(345)_7
+\end{align}
+$$
+</div>
+为了使计算更为快捷，可以制作一个七进制的一位数的加法表：
+
+<table>
+<thead>
+<tr>
+<th align="center">+</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">6</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">6</td>
+<td align="center">10</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">6</td>
+<td align="center">10</td>
+<td align="center">11</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">6</td>
+<td align="center">10</td>
+<td align="center">11</td>
+<td align="center">12</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">6</td>
+<td align="center">10</td>
+<td align="center">11</td>
+<td align="center">12</td>
+<td align="center">13</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">6</td>
+<td align="center">10</td>
+<td align="center">11</td>
+<td align="center">12</td>
+<td align="center">13</td>
+<td align="center">14</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">6</td>
+<td align="center">10</td>
+<td align="center">11</td>
+<td align="center">12</td>
+<td align="center">13</td>
+<td align="center">14</td>
+<td align="center">15</td>
+</tr>
+</tbody></table>
+<p>减法只是加法的逆运算，我们再来看看乘法运算。同样，在十进制下学习乘法我们一开始就背诵九九乘法表，在七进制下，我们也先制作一个七进制下的六六乘法表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">$\times$</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">6</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center">6</td>
+<td align="center">11</td>
+<td align="center">13</td>
+<td align="center">15</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">0</td>
+<td align="center">3</td>
+<td align="center">6</td>
+<td align="center">12</td>
+<td align="center">15</td>
+<td align="center">21</td>
+<td align="center">24</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">0</td>
+<td align="center">4</td>
+<td align="center">11</td>
+<td align="center">15</td>
+<td align="center">22</td>
+<td align="center">26</td>
+<td align="center">33</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">0</td>
+<td align="center">5</td>
+<td align="center">13</td>
+<td align="center">21</td>
+<td align="center">26</td>
+<td align="center">34</td>
+<td align="center">42</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">0</td>
+<td align="center">6</td>
+<td align="center">15</td>
+<td align="center">24</td>
+<td align="center">33</td>
+<td align="center">42</td>
+<td align="center">51</td>
+</tr>
+</tbody></table>
+<p>得到六六乘法表后，我们就可以来试一试乘法的计算法则了。例如$(265)_7\times(4)_7=(1456)_7$，原因是：<br><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午10.03.13.png"/></p>
+<div style="display:none">
+$$
+\begin{align}
+(265)_7\times(4)_7&=(2\cdot7^2+6\cdot7+5)\cdot4\\
+&=8\cdot7^2+24\cdot7+20\\
+&=(1\cdot7+1)\cdot7^2+(3\cdot7+3)\cdot7+(2\cdot7+6)\tag{6}\\
+&=1\cdot7^3+(1+3)\cdot7^2+(3+2)\cdot7+6\tag{7}\\
+&=(1456)_7
+\end{align}
+$$
+</div>
+注意到6式到7式就是进位在发挥作用。
+
+<p>在十进制下三位数乘两位数的计算法则，用两位数的两个数分别去乘这个三位数，再把它们的和相加。需要注意的是两位数的十位乘三位数的积在写的时候注意数位对齐。七进制下的三位数乘两位数，也是同理，以$(265)_7\times(34)_7$为例，首先用265分别去乘以3和4:<br>$$(265)_7\times(4)_7=(1456)_7\tag{8}$$<br>$$(265)_7\times(3)_7=(1161)_7\tag{9}$$<br>再把8式和9式的结果相加，需要注意的是9式中的3，在这里表示的是3个$(10)_7$，而不是3个$(1)_7$。因此最后9式的结果还得乘$(10)_7$<br>$$(1456)_7+(1161)_7\cdot(10)_7=(13366)_7$$<br>接下来，用乘法分配律来解释一下：<br><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-09-29 上午9.55.28.png"/></p>
+<div style="display:none">
+$$
+\begin{align}
+(265)_7\times(34)_7&=(265)_7\times\bigl((30)_7+(4)_7\bigr)\\
+&=\bigl((265)_\times(30)_7\bigr)+\bigl((265)_7\times(4)_7\bigr)
+\end{align}
+$$
+</div>
+现在注意到，因为$(30)_7=(3)_7\times(10)_7$，我们有
+$$(265)_7\times(30)_7=\bigl((265)_7\times(3)_7\bigr)\times(10)_7$$
+因此
+$$(265)_7\times(34)_7=\bigl((265)_7\times(3)_7\bigr)\times(10)_7+\bigl((265)_7\times(4)_7\bigr)$$
+可以看到，七进制的乘法和十进制乘法的基本原理没有区别。篇幅所限，另起一文，再看看七进制下的长除法，可以预想到的是和十进制的长除法没有区别。
+
+<p><strong>这里我仅仅只展示来七进制的计算法则。但是通过和十进制的对比，不难看出本文的关键点在于运算法则具有普适性，适应于$n$进制$(n\gt0，且n\subseteq N)$，它们在任意进制的位值记数法下都是相同的。因此，掌握标准运算法则不仅仅是掌握一种孤立的技巧，而是一种可以广泛运用的能力</strong></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>点个赞<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">记录</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学，小学数学</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:wezhon.com/2020/09/28/%E4%BB%BB%E6%84%8F%E8%BF%9B%E5%88%B6%E6%95%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/09/22/%E7%A7%8B%E9%9B%A8%E7%BB%B5%E7%BB%B5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">秋雨绵绵</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -256,9 +650,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
