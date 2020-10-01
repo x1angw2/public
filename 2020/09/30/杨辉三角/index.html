@@ -6,16 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="wezhon.com">
-  <title>Archives | Wezhon</title>
+  <title>好玩的数学之杨辉三角 | Wezhon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Wezhon">
-<meta property="og:url" content="wezhon.com/archives/page/2/index.html">
+  <meta name="description" content="杨辉三角，是二项式系数在三角形中的一种几何排列，中国南宋数学家杨辉1261年所著《详解九章算法》一书中出现。在西方，帕斯卡在1654年发现这个规律，所以这个表又叫帕斯卡三角形。值得注意的是杨辉要比帕斯卡早发现393年。 本文主要论证杨辉三角等式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="好玩的数学之杨辉三角">
+<meta property="og:url" content="wezhon.com/2020/09/30/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/index.html">
 <meta property="og:site_name" content="Wezhon">
+<meta property="og:description" content="杨辉三角，是二项式系数在三角形中的一种几何排列，中国南宋数学家杨辉1261年所著《详解九章算法》一书中出现。在西方，帕斯卡在1654年发现这个规律，所以这个表又叫帕斯卡三角形。值得注意的是杨辉要比帕斯卡早发现393年。 本文主要论证杨辉三角等式。">
 <meta property="og:locale">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-01 下午2.52.30.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/20201001.jpg">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/2020100101.jpeg">
+<meta property="article:published_time" content="2020-09-30T08:34:19.000Z">
+<meta property="article:modified_time" content="2020-10-01T06:55:03.776Z">
 <meta property="article:author" content="Wezhon Hsiang">
-<meta property="article:tag" content="计算机、数学、阅读、跑步、骑行">
+<meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-01 下午2.52.30.png">
   
     <link rel="alternative" href="/atom.xml" title="Wezhon" type="application/atom+xml">
   
@@ -172,82 +180,115 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-杨辉三角" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      好玩的数学之杨辉三角
+    </h1>
+  
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/09/30/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/" class="archive-article-date">
+  	<time datetime="2020-09-30T08:34:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-30</time>
+</a>
+
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>杨辉三角，是二项式系数在三角形中的一种几何排列，中国南宋数学家杨辉1261年所著《详解九章算法》一书中出现。在西方，帕斯卡在1654年发现这个规律，所以这个表又叫帕斯卡三角形。值得注意的是杨辉要比帕斯卡早发现393年。</p>
+<p>本文主要论证杨辉三角等式。</p>
+<a id="more"></a>
+
+<h2 id="什么是二项式系数-binom-n-k"><a href="#什么是二项式系数-binom-n-k" class="headerlink" title="什么是二项式系数$\binom{n}{k}$"></a>什么是二项式系数$\binom{n}{k}$</h2><p>设$n$是一个自然数，定义$n!$（$n$的阶乘）为从1到n之间所有自然数的乘积。例如$5!=5\times4\times3\times2\times1$。对于任意满足$1\leqslant k \leqslant n$的自然数$k$，我们定义**二项式系数$\binom{n}{k}$**为<br>$$\binom{n}{k}=\frac{n!}{(n-k)!k!}\tag{1}$$<br>例如，<br>$$\binom{6}{5}=\frac{6\times5\times4\times3\times2\times1}{1\times(5\times4\times3\times2\times1)}=6\tag{2}$$</p>
+<h2 id="杨辉三角等式的简单证明"><a href="#杨辉三角等式的简单证明" class="headerlink" title="杨辉三角等式的简单证明"></a>杨辉三角等式的简单证明</h2><p>$$\binom{n}{k}=\binom{n-1}{k}+\binom{n-1}{k-1}\tag{3}$$<br>上述等式就是帕斯卡三角等式。</p>
+<p>以$\binom{6}{5}$为例，试一试等式是否成立，可以得到：<br>$$\binom{6}{5}=\binom{5}{5}+\binom{5}{4}\tag{4}$$<br>验证一下，<br>$$\binom{5}{5}+\binom{5}{4}=\frac{5\times4\times3\times2\times1}{1\times(5\times4\times3\times2\times1)}+\frac{5\times4\times3\times2\times1}{1\times(4\times3\times2\times1)}=1+5=6\tag{5}$$<br>简单计算得到2式等于5式，由此可知4式成立。为什么3式成立，我们利用分数加法就能证明它，<br><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-01 下午2.52.30.png"/></p>
+<div style="display:none">
+$$
+\begin{align}
+\binom{n-1}{k}+\binom{n-1}{k-1}&=\frac{(n-1)!}{(n-1-k)!k!}+\frac{(n-1)!}{\bigl((n-1)-(k-1)\bigr)!(k-1)!}\\
+&=\frac{(n-1)!}{(n-k-1)!k!}+\frac{(n-10!}{(n-k)!(k-1)!}
+\end{align}
+$$
+</div>
+注意到$(n-k)!k!$同时两个分母的倍数，因为
+$$(n-k)!k!=(n-k)\cdot[(n-k-1)!k!]$$
+$$(n-k)!k!=k\cdot[(n-k)!(k-1)!]$$
+根据分数加法法则，可以得到
+$$\frac{(n-1)!}{(n-k-1)!k!}+\frac{(n-1)!}{(n-k)!(k-1)!}=\frac{(n-1)!(n-k)+(n-1)!k}{(n-k)!k!}$$
+利用分配律，分子可以简化为：
+$$(n-1)!(n-k)+(n-1)!k=(n-1)![(n-k)+k]=(n-1)!n=n!$$
+综上所述，
+$$\frac{(n-1)!}{(n-k-1)!k!}+\frac{(n-1)!}{(n-k)!(k-1)!}=\frac{n!}{(n-k)!k!}=\binom{n}{k}$$
+杨辉三角得证明。
+
+<h2 id="帕斯卡三角形几个好玩的特点"><a href="#帕斯卡三角形几个好玩的特点" class="headerlink" title="帕斯卡三角形几个好玩的特点"></a>帕斯卡三角形几个好玩的特点</h2><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/20201001.jpg"/>
+
+<p><em>帕斯卡三角形</em></p>
+<ol>
+<li>各行数字连起来为：1，11，121，1331，14641，15101051，1615201561，···<ul>
+<li>第一行为$11^0$</li>
+<li>第二行为$11^1$</li>
+<li>第三行为$11^2$</li>
+<li>第四行为$11^3$</li>
+<li>第$n$行为$11^{n-1}$</li>
+</ul>
+</li>
+<li>各行数字求和为：1，2，4，8，16，32，···<ul>
+<li>第一行为$2^0$</li>
+<li>第二行为$2^1$</li>
+<li>第三行为$2^2$</li>
+<li>第四行为$2^3$</li>
+<li>第$n$行为$2^{n-1}$</li>
+</ul>
+</li>
+<li>列和等于拐角处数字</li>
+<li>隐藏斐波那契数列<ul>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/2020100101.jpeg"/>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>点个赞<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/10/Markdown%E8%AF%AD%E6%B3%95%E4%B8%ADMathJax%E5%B8%B8%E8%A7%81%E7%AC%A6%E5%8F%B7/" class="archive-article-date">
-  	<time datetime="2020-09-10T06:02:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-10</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/10/Markdown%E8%AF%AD%E6%B3%95%E4%B8%ADMathJax%E5%B8%B8%E8%A7%81%E7%AC%A6%E5%8F%B7/">Markdown语法中MathJax常见符号</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">计算机</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/09/%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/" class="archive-article-date">
-  	<time datetime="2020-09-09T04:30:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/09/%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/">什么是算术基本定理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -255,366 +296,110 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">初等数论</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:wezhon.com/2020/09/30/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/08/%E7%B4%A0%E6%95%B0%E5%92%8C%E5%9B%A0%E5%AD%90%E7%9A%84%E5%AE%9A%E4%B9%89/" class="archive-article-date">
-  	<time datetime="2020-09-08T04:48:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-08</time>
-</a>
 
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/28/%E4%BB%BB%E6%84%8F%E8%BF%9B%E5%88%B6%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">任意进制数的计算</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/08/%E7%B4%A0%E6%95%B0%E5%92%8C%E5%9B%A0%E5%AD%90%E7%9A%84%E5%AE%9A%E4%B9%89/">素数和因子</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/08/hexo-yilia%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E8%AE%BF%E9%97%AE%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%92%8C%E8%83%8C%E6%99%AF%E9%9F%B3%E4%B9%90/" class="archive-article-date">
-  	<time datetime="2020-09-08T01:47:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-08</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/08/hexo-yilia%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E8%AE%BF%E9%97%AE%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%92%8C%E8%83%8C%E6%99%AF%E9%9F%B3%E4%B9%90/">hexo+yilia主题添加访问量统计和背景音乐</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">计算机</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/06/%E5%8D%8A%E9%A9%AC/" class="archive-article-date">
-  	<time datetime="2020-09-06T02:40:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-06</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/06/%E5%8D%8A%E9%A9%AC/">半马</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">运动</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/04/CSS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" class="archive-article-date">
-  	<time datetime="2020-09-04T05:11:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-04</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/04/CSS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/">CSS学习之清除浮动</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">计算机</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/02/3%E7%9A%84%E5%80%8D%E6%95%B0%E7%89%B9%E5%BE%81%E5%BC%95%E5%87%BA%E7%9A%84%E6%95%B4%E9%99%A4%E6%80%A7%E8%A7%84%E5%BE%8B/" class="archive-article-date">
-  	<time datetime="2020-09-02T02:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-02</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/02/3%E7%9A%84%E5%80%8D%E6%95%B0%E7%89%B9%E5%BE%81%E5%BC%95%E5%87%BA%E7%9A%84%E6%95%B4%E9%99%A4%E6%80%A7%E8%A7%84%E5%BE%8B/">为什么一个数的各个数位之和是3的倍数，那么这个数就是3的倍数-关于整除性规律的学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">小学数学教学</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/02/%E5%8F%8D%E8%AF%81%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-09-02T01:55:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-02</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/02/%E5%8F%8D%E8%AF%81%E6%B3%95/">反证法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/01/hexo%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/" class="archive-article-date">
-  	<time datetime="2020-09-01T08:35:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/01/hexo%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/">hexo使用备忘录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">计算机</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/01/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6%E6%95%99%E5%AD%A6-%E4%B9%98%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-09-01T01:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/01/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6%E6%95%99%E5%AD%A6-%E4%B9%98%E6%B3%95/">二年级数学教学-乘法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">小学数学教学</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -640,8 +425,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
