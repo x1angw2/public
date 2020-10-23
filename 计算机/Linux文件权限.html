@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wezhon.com","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="本文简单介绍Linux文件权限进行分析以及它们的来历。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux文件权限">
+<meta property="og:url" content="http://wezhon.com/%E8%AE%A1%E7%AE%97%E6%9C%BA/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90.html">
+<meta property="og:site_name" content="Wezhon">
+<meta property="og:description" content="本文简单介绍Linux文件权限进行分析以及它们的来历。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/file-permissions-rwx.jpg">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-10 下午1.32.15.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-10 下午1.14.09.png">
+<meta property="article:published_time" content="2020-10-09T08:40:27.000Z">
+<meta property="article:modified_time" content="2020-10-23T03:40:14.030Z">
+<meta property="article:author" content="Wezhon Hsiang">
+<meta property="article:tag" content="计算机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/file-permissions-rwx.jpg">
+
+
+<link rel="canonical" href="http://wezhon.com/%E8%AE%A1%E7%AE%97%E6%9C%BA/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Linux文件权限 | Wezhon</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Wezhon</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">有人的地方就是江湖。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于我</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90%E6%9F%A5%E7%9C%8B"><span class="nav-number">1.</span> <span class="nav-text">Linux文件或目录权限查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="nav-number">2.</span> <span class="nav-text">默认文件权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="nav-number">3.</span> <span class="nav-text">修改文件权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other"><span class="nav-number">4.</span> <span class="nav-text">Other</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Wezhon Hsiang"
+      src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/123.jpg">
+  <p class="site-author-name" itemprop="name">Wezhon Hsiang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/x1angw2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;x1angw2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:958810150@qq.com" title="E-Mail → mailto:958810150@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://wezhon.com/%E8%AE%A1%E7%AE%97%E6%9C%BA/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/123.jpg">
+      <meta itemprop="name" content="Wezhon Hsiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wezhon">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux文件权限
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-09 16:40:27" itemprop="dateCreated datePublished" datetime="2020-10-09T16:40:27+08:00">2020-10-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-10-23 11:40:14" itemprop="dateModified" datetime="2020-10-23T11:40:14+08:00">2020-10-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E8%AE%A1%E7%AE%97%E6%9C%BA/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E8%AE%A1%E7%AE%97%E6%9C%BA/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本文简单介绍Linux文件权限进行分析以及它们的来历。</p>
+<a id="more"></a>
+<h3 id="Linux文件或目录权限查看"><a href="#Linux文件或目录权限查看" class="headerlink" title="Linux文件或目录权限查看"></a>Linux文件或目录权限查看</h3><p>当我们用<code>ls</code>命令显示出当前目录内的文件时。显示输出的最左边谜一般的东西就是各个文件或文件夹的权限。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l</span><br><span class="line">total 62912</span><br><span class="line">-rw-r--r-- 1 wezhon  staff      1688  6  2 15:18 1.py</span><br><span class="line">-rw-r--r-- 1 wezhon  staff      2183  5 25 08:22 LaTex.md</span><br><span class="line">drwxr-xr-x 2 wezhon  staff        64  4 20 10:27 Playgrounds</span><br><span class="line">-rw-r--r-- 1 wezhon  staff  11417837  4 27 13:31 linux.pdf</span><br><span class="line">-rw-r--r-- 1 wezhon  staff    107445  6 19 08:28 man_youtube-dl.txt</span><br><span class="line">drwxr-xr-x 4 wezhon  staff       128  9 24 13:30 mysql</span><br><span class="line">-rw-r--r-- 1 wezhon  staff      2684  5  9 15:42 root@192.168.0.8</span><br><span class="line">drwxr-xr-x 3 wezhon  staff        96  9  4 10:38 文章</span><br></pre></td></tr></table></figure>
+
+<p>输出结果的<strong>第一个字段</strong>就是描述文件和目录权限的编码。这个字段的第一个字符代表了对象的类型。</p>
+<ul>
+<li><code>-</code>代表文件</li>
+<li><code>d</code>代表目录</li>
+<li><code>l</code>代表链接</li>
+<li><code>c</code>代表字符型设备</li>
+<li><code>b</code>代表块设备</li>
+<li><code>n</code>代表网络设备</li>
+</ul>
+<p>后面的9个字段分为三组，每组三个字段。第一组表示的为该文件所有者权限，第二组表示的是该文件所属组的权限；第三组表示的是其它用户的权限。每一组定义了3种访问权限。</p>
+<ul>
+<li><code>r</code>代表对象是可读的<em>read</em></li>
+<li><code>w</code>代表对象是可写的<em>write</em></li>
+<li><code>x</code>代表对象是可执行<em>eXecute</em></li>
+</ul>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/file-permissions-rwx.jpg" width="60%"/>
+
+<p>反之。若没有该权限，对应的地方显示<code>-</code><br>以上面例子的第一行为例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wezhon  staff      1688  6  2 15:18 1.py</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第1个字符是<code>-</code>：表示这是一个文件</li>
+<li>第2-4个字符是<code>rw-</code>，表示的是文件所有者权限<ul>
+<li><code>r</code>表示具有读取权限</li>
+<li><code>w</code>表示具有写入权限</li>
+<li><code>-</code>表示不具有执行权限</li>
+</ul>
+</li>
+<li>第5-7个字符是<code>r--</code>，表示的是文件所属组权限<ul>
+<li><code>r</code>表示具有读取权限</li>
+<li><code>-</code>表示不具有写入权限</li>
+<li><code>-</code>表示不具有执行权限</li>
+</ul>
+</li>
+<li>第8-10个字符是<code>r--</code>，表示的是其它用户权限<ul>
+<li><code>r</code>表示具有读取权限</li>
+<li><code>-</code>表示不具有写入权限</li>
+<li><code>-</code>表示不具有执行权限</li>
+</ul>
+</li>
+</ul>
+<h3 id="默认文件权限"><a href="#默认文件权限" class="headerlink" title="默认文件权限"></a>默认文件权限</h3><p>当我们是有<code>touch</code>、<code>mkdir</code>创建文件和目录时。创建的文件会有默认的权限。</p>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-10 下午1.32.15.png" width="50%"/>
+
+<p>可以看到，我创建了一个名为<code>test.md</code>文件。这个文件创建后的默认权限为<code>-rw-r--r--</code>。使用<code>umask</code>命令可以查看或设置创建文件或目录时权限。</p>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-10 下午1.14.09.png" width="50%"/>
+
+<p>可以看见，我的计算机输入<code>umask</code>命令后输出的是<code>022</code>；不理解其工作原理，我的脑袋中就会出现一个大大的问号。</p>
+<p><strong>这个3个数字表示文件或目录对于的<code>umask</code>八进制值。要理解<code>umask</code>是怎么工作的，得先理解八进制模式的安全性设置。</strong></p>
+<p>八进制模式的安全性设置先获取3个rwx权限的值，然后将其转换成3位二进制值，用一个八进制值表示。在这个二进制表示中，每个位置代表一个二进制位。下表列出了所有组合。</p>
+<table>
+<thead>
+<tr>
+<th align="center">权限</th>
+<th align="center">二进制值</th>
+<th align="center">八进制值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">—</td>
+<td align="center">000</td>
+<td align="center">0</td>
+<td align="center">没有任何权限</td>
+</tr>
+<tr>
+<td align="center">–x</td>
+<td align="center">001</td>
+<td align="center">1</td>
+<td align="center">只有执行权限</td>
+</tr>
+<tr>
+<td align="center">-w-</td>
+<td align="center">010</td>
+<td align="center">2</td>
+<td align="center">只有写入权限</td>
+</tr>
+<tr>
+<td align="center">-wx</td>
+<td align="center">011</td>
+<td align="center">3</td>
+<td align="center">同时具有执行和写入权限</td>
+</tr>
+<tr>
+<td align="center">r–</td>
+<td align="center">100</td>
+<td align="center">4</td>
+<td align="center">只有读取权限</td>
+</tr>
+<tr>
+<td align="center">r-x</td>
+<td align="center">101</td>
+<td align="center">5</td>
+<td align="center">同时具有读取和执行权限</td>
+</tr>
+<tr>
+<td align="center">rw-</td>
+<td align="center">110</td>
+<td align="center">6</td>
+<td align="center">同时具有读取和写入权限</td>
+</tr>
+<tr>
+<td align="center">rwx</td>
+<td align="center">111</td>
+<td align="center">7</td>
+<td align="center">具有全部权限</td>
+</tr>
+</tbody></table>
+<p>八进制模式先取得权限的八进制值，然后再把这三组安全级别(所有者，所有群组和其它用户)的八进制值顺序列出。比如<strong>644</strong>所表示的就是所有者及群组具有读取和写入的权限，其它用户只有读取权限。</p>
+<p>了解八进制模式之后，对于<code>umask</code>的输出值反而更让人疑惑了。为什么我的计算机创建的文件默认权限是<strong>644</strong>，而<code>umask</code>的输出却是<strong>002</strong>。其实umask值只是一个掩码。它会屏蔽掉不想授予该安全级别的权限。要把umask值从对象的权限值减掉，文件的全权限值为<strong>666</strong>目录的全权限值为<strong>777</strong>。所以我创建的<code>test.md</code>文件的默认权限为$666-022=644$。</p>
+<p><strong>umask</strong>命令的简单用法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">umask</span>           <span class="comment">#查看默认的权限掩码值</span></span><br><span class="line">unask 026       <span class="comment">#设置新的权限掩码值，此时的默认文件权限值为:666-026=640;目录的权限值为:777-026=751</span></span><br></pre></td></tr></table></figure>
+<h3 id="修改文件权限"><a href="#修改文件权限" class="headerlink" title="修改文件权限"></a>修改文件权限</h3><p>使用<code>chmod</code>命令改变文件的权限。下面是该命令用法</p>
+<p><strong>语法：</strong></p>
+<blockquote>
+<p><code>chmod [-cfvR] [--help] [--version] mode file...</code></p>
+</blockquote>
+<p><strong>参数说明</strong><br>mode：权限设定字串，格式如下：</p>
+<blockquote>
+<p><code>[ugoa...][[+-=][rwxX]...][,...]</code></p>
+</blockquote>
+<p>其中:</p>
+<ul>
+<li><code>u</code>表示该文件的拥有者，g 表示与该文件的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是。</li>
+<li><code>+</code>表示增加权限、- 表示取消权限、= 表示唯一设定权限。</li>
+<li><code>r</code>表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该文件是个子目录或者该文件已经被设定过为可执行。</li>
+</ul>
+<p>其它参数说明：</p>
+<ul>
+<li><code>-c</code>: 若该文件权限确实已经更改，才显示其更改动作</li>
+<li><code>-f</code>: 若该文件权限无法被更改也不要显示错误讯息</li>
+<li><code>-v</code>: 显示权限变更的详细资料</li>
+<li><code>-R</code>: 对目前目录下的所有文件与子目录进行相同的权限变更(即以递归的方式逐个变更)</li>
+<li><code>--help</code>: 显示辅助说明</li>
+<li><code>--version</code>: 显示版本</li>
+</ul>
+<p>operator 的符号模式表:</p>
+<ul>
+<li><code>+</code>为指定的用户类型增加权限</li>
+<li><code>-</code>去除指定用户类型的权限</li>
+<li><code>=</code>设置指定用户权限的设置，即将用户类型的所有权限重新设置</li>
+</ul>
+<p><strong>实例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod ugo+r file1.md                    <span class="comment">#将file1.md设为所有都可读</span></span><br><span class="line">chmod ug+w,o-w file1.md file2.md        <span class="comment">#将file1.md和file1.md设为所有者与所属组可写，其它人不可写。</span></span><br><span class="line"></span><br><span class="line">chmod 752 file.py                       <span class="comment">#将file.py权限设置为所有人可读可写可执行</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h3><p>值得注意的是，在linux权限值为8进制，从这里也可以看出计算机能节省空间就尽量节省空间。</p>
+<p>实例中的第三个，权限值为777。</p>
+<ul>
+<li>第一个为7，$7=1+2+4$，1表示可读；2表示可写；4表示可执行。它们之和为7，所以7表示可读可写可执行。</li>
+<li>第二个为5，$5=1+4$，1表示可读，4表示可执行。它们的和为5，所以5表示为可读可执行。</li>
+<li>第三个为3，$3=1+2$，1表示可读，2表示写。它们的和为3，所以3表示可读可写。</li>
+</ul>
+<p>数论很神奇，数学很奇妙。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+  <div class="followme">
+    <span>欢迎关注我的其它发布渠道</span>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://gitee.com/x1angw2/picgomacbook/raw/master/img/qrcode_for_gh_ac27ff38c5b7_430.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" rel="tag"># 计算机</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA/ArchLinux%E5%AE%89%E8%A3%85%E5%90%8E%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE.html" rel="prev" title="ArchLinux安装后基本设置">
+                  <i class="fa fa-chevron-left"></i> ArchLinux安装后基本设置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%95%B0%E5%AD%A6/%E9%9F%A6%E8%BE%BE%E5%AE%9A%E7%90%86%E5%92%8C%E4%B8%80%E5%85%83%E4%BA%8C%E6%AC%A1%E6%96%B9%E7%A8%8B.html" rel="next" title="韦达定理和一元二次方程">
+                  韦达定理和一元二次方程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wezhon Hsiang</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"nn0YreummlaUFBiDlEMepgN4-gzGzoHsz","appKey":"4lGbmearBDAmcXaPxfoTcpPV","serverURLs":"https://nn0yreum.lc-cn-n1-shared.com","placeholder":"欢迎您给我留言哦","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/%E8%AE%A1%E7%AE%97%E6%9C%BA/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90.html",
+      serverURLs: "https://nn0yreum.lc-cn-n1-shared.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

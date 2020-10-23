@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wezhon.com","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="记录一下ArchLinux安装记录，当作备忘录。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ArchLinux Install">
+<meta property="og:url" content="http://wezhon.com/%E6%8D%A2%E4%B8%BB%E9%A2%98%E4%B9%8B%E5%89%8D%E7%9A%84%E6%96%87%E7%AB%A0/ArchLinux-install.html">
+<meta property="og:site_name" content="Wezhon">
+<meta property="og:description" content="记录一下ArchLinux安装记录，当作备忘录。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午7.35.42.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午7.56.11.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-08 下午2.08.38.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午7.59.44.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午8.04.27.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午8.11.20.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午8.17.54.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午8.26.43.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午8.32.18.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午9.08.06.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.43.20.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.47.16.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.48.04.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.34.57.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.51.21.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.57.32.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午9.51.22.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.11.54.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.07.48.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.18.31.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.22.50.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.25.08.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.45.43.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.47.00.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.50.28.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.54.19.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.56.21.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-08 下午2.22.19.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-08 下午2.24.46.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-08 下午3.42.41.png">
+<meta property="og:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-08 下午3.49.13.png">
+<meta property="article:published_time" content="2020-10-08T08:44:29.000Z">
+<meta property="article:modified_time" content="2020-10-22T06:17:06.883Z">
+<meta property="article:author" content="Wezhon Hsiang">
+<meta property="article:tag" content="计算机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午7.35.42.png">
+
+
+<link rel="canonical" href="http://wezhon.com/%E6%8D%A2%E4%B8%BB%E9%A2%98%E4%B9%8B%E5%89%8D%E7%9A%84%E6%96%87%E7%AB%A0/ArchLinux-install.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ArchLinux Install | Wezhon
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Wezhon</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">有人的地方就是江湖。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于我</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">一、准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">二、系统安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.1.</span> <span class="nav-text">新建一个虚拟机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">进入虚拟机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E8%81%94%E7%BD%91"><span class="nav-number">2.3.</span> <span class="nav-text">测试是否正常联网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4"><span class="nav-number">2.4.</span> <span class="nav-text">更新系统时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E9%95%9C%E5%83%8F%E7%AB%99%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.</span> <span class="nav-text">编辑镜像站文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%8C%BA"><span class="nav-number">2.6.</span> <span class="nav-text">分区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD"><span class="nav-number">2.7.</span> <span class="nav-text">格式化分区和挂载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.8.</span> <span class="nav-text">安装基本操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%9F%BA%E7%A1%80%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.9.</span> <span class="nav-text">配置基础系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%AF%BC%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.10.</span> <span class="nav-text">引导系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7"><span class="nav-number">2.11.</span> <span class="nav-text">设置用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%80%E5%87%BA%E9%87%8D%E5%90%AF"><span class="nav-number">2.12.</span> <span class="nav-text">退出重启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C"><span class="nav-number">2.13.</span> <span class="nav-text">连接网络</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%BB%93%E6%9D%9F"><span class="nav-number">3.</span> <span class="nav-text">三、结束</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Wezhon Hsiang"
+      src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/123.jpg">
+  <p class="site-author-name" itemprop="name">Wezhon Hsiang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/x1angw2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;x1angw2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:958810150@qq.com" title="E-Mail → mailto:958810150@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+      
+  
+  
+
+      
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">ArchLinux Install
+</h1>
+
+<div class="post-meta-container">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <p>记录一下ArchLinux安装记录，当作备忘录。</p>
+<a id="more"></a>
+
+<p>环境:Mac  VirtualBox</p>
+<h3 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h3><ul>
+<li>VirtualBox<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午7.35.42.png" width="8%"/><ul>
+<li>官方地址:<a target="_blank" rel="noopener" href="https://www.virtualbox.org/">https://www.virtualbox.org/</a></li>
+<li><a target="_blank" rel="noopener" href="https://download.virtualbox.org/virtualbox/6.1.14/VirtualBox-6.1.14-140239-OSX.dmg">下载地址</a>(Mac)</li>
+</ul>
+</li>
+<li>安装镜像.iso<ul>
+<li><a target="_blank" rel="noopener" href="https://www.archlinux.org/download/">官方地址</a></li>
+<li>下载地址<ul>
+<li><a target="_blank" rel="noopener" href="http://mirrors.163.com/archlinux/iso/2020.10.01/archlinux-2020.10.01-x86_64.iso">163</a></li>
+<li><a target="_blank" rel="noopener" href="http://mirrors.ustc.edu.cn/archlinux/iso/2020.10.01/archlinux-2020.10.01-x86_64.iso">中科大</a></li>
+<li><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso/2020.10.01/archlinux-2020.10.01-x86_64.iso">清华</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、系统安装"><a href="#二、系统安装" class="headerlink" title="二、系统安装"></a>二、系统安装</h3><h4 id="新建一个虚拟机"><a href="#新建一个虚拟机" class="headerlink" title="新建一个虚拟机"></a>新建一个虚拟机</h4><p>输入合适的<strong>内存</strong>和<strong>硬盘</strong>大小。新建好后在虚拟机设置界面添加好下载的iso镜像文件。<br><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午7.56.11.png" width="60%"/></p>
+<p>这里需要注意的是选中<code>启用EFI</code>选项。</p>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-08 下午2.08.38.png" width="60%"/>
+
+<h4 id="进入虚拟机"><a href="#进入虚拟机" class="headerlink" title="进入虚拟机"></a>进入虚拟机</h4><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午7.59.44.png" width="61%"/>
+
+<p>默认<strong>第一个选项</strong>进入。</p>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午8.04.27.png" width="50%"/>
+
+<p>ok，看见这个界面就表示成功进入镜像系统。</p>
+<h4 id="测试是否正常联网"><a href="#测试是否正常联网" class="headerlink" title="测试是否正常联网"></a>测试是否正常联网</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping baidu.com</span><br></pre></td></tr></table></figure>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午8.11.20.png" width="50%"/>
+
+<h4 id="更新系统时间"><a href="#更新系统时间" class="headerlink" title="更新系统时间"></a>更新系统时间</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">timedatectl set-ntp <span class="literal">true</span>    <span class="comment">#确保系统时间是准确的</span></span><br><span class="line"></span><br><span class="line">timedatectl status          <span class="comment">#检测服务状态</span></span><br></pre></td></tr></table></figure>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午8.17.54.png" width="50%"/>
+
+<h4 id="编辑镜像站文件"><a href="#编辑镜像站文件" class="headerlink" title="编辑镜像站文件"></a>编辑镜像站文件</h4><p>默认镜像站很多国外网站，距离等原因网速较慢。所以编辑<code>/etc/pacman.d/mirrorlist</code>文件，把不需要的注释或删除掉，保留或新增国内一些镜像源(163、中科大、淘宝等)。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/pacman.d/mirrorlist</span><br></pre></td></tr></table></figure>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午8.26.43.png" width="50%"/>
+
+<p>这里我就只保留了清华的。</p>
+<h4 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h4><p>这里我们采用最简单的efi分区模式。</p>
+<ul>
+<li><code>fdisk -l</code>查看本机硬盘。<ul>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午8.32.18.png" width="50%"/></li>
+<li>第一个<code>/dev/sda</code>就是30Gb的硬盘了。<code>/dev/loop0</code>这个是镜像文件虚拟光驱。</li>
+</ul>
+</li>
+<li>分区方案<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#一共30g</span></span><br><span class="line">sda1 200    /boot/EFI   <span class="comment">#EFI分区</span></span><br><span class="line">sda2 500M   /boot       <span class="comment">#boot分区</span></span><br><span class="line">sda3 20G    /           <span class="comment">#根分区</span></span><br><span class="line">sda4 9.3G   /home       <span class="comment">#用户目录</span></span><br></pre></td></tr></table></figure></li>
+<li>建立分区表<ul>
+<li>建立分区表有parted、fdisk两个都可以，这里采用fdisk。</li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午9.08.06.png" width="50%"/>进入软件交互界面。</li>
+<li>输入<code>g</code>新建立GPT分区表</li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.43.20.png" width="70%"/></li>
+<li>输入<code>n</code>建立分区；输入<code>p</code>选择建立主分区；输入<code>1</code>选择分区序号；输入<code>2048</code>选择分区起始位置；输入<code>+200m</code>选择分区结束位置。</li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.47.16.png" width="70%"/></li>
+<li>重复上一步，建立<code>/</code>根目录和<code>/home</code>目录。</li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.48.04.png" width="70%"/></li>
+<li>输入<code>t</code>把<code>sda1</code>分区设置为EFI类型</li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.34.57.png" width="70%"/>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="格式化分区和挂载"><a href="#格式化分区和挂载" class="headerlink" title="格式化分区和挂载"></a>格式化分区和挂载</h4><ul>
+<li><strong>格式化分区</strong>输入<code>mkfs.fat -F32 /dev/sda1</code>格式化esp分区；<code>mkfs.ext4 /dev/sda2-4</code>格式化另外3个分区。<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.51.21.png" width="60%"/></li>
+<li><strong>挂载分区</strong><ul>
+<li>输入<code>mount /dev/sda2 /mnt</code>挂载根分区</li>
+<li>输入<code>mkdir /mnt/boot</code>建立boot分区文件夹</li>
+<li>输入<code>mkidr /mnt/home</code>建立home分区文件夹</li>
+<li>输入<code>mount /dev/sda2 /mnt</code>挂载boot分区</li>
+<li>输入<code>mkdir /mnt/boot/EFI</code>建立EFI分区文件夹</li>
+<li>输入<code>mount /dev/sda1 /mnt/boot/EFI</code>挂载EFI分区</li>
+<li>输入<code>mount /dev/sda3 /mnt/home</code>挂载home分区</li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.57.32.png" width="50%"/>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="安装基本操作系统"><a href="#安装基本操作系统" class="headerlink" title="安装基本操作系统"></a>安装基本操作系统</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacstrap -i /mnt base base-devel linux linux-firmware networkmanager</span><br></pre></td></tr></table></figure>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午9.51.22.png" width="70%"/>
+
+<p>这里我开始的时候没有安装<code>networkmanager</code>，导致后面进入系统无法连接互联网。又退回来arch-chroot进系统安装的。</p>
+<h4 id="配置基础系统"><a href="#配置基础系统" class="headerlink" title="配置基础系统"></a>配置基础系统</h4><ul>
+<li><p>Fstab</p>
+<ul>
+<li>用<code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code>生成<strong>fatab</strong>文件</li>
+<li>执行完上述命令后建议检查一下<code>/mnt/etc/fstab</code>文件是否正确</li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.11.54.png" width="70%"/>
+</li>
+</ul>
+</li>
+<li><p>Chroot(切换到新安装的系统)</p>
+<ul>
+<li><code>arch-chroot /mnt /bin/bash</code></li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.07.48.png" width="50%"/>
+</li>
+</ul>
+</li>
+<li><p>本地化设置</p>
+<ul>
+<li>设置时区</li>
+<li>设置时区为上海<code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></li>
+<li>设置硬件时间<code>hwclock --systohc --utc</code></li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.18.31.png" width="70%"/></li>
+<li>设置中文</li>
+<li>编辑<code>/etc/locale.gen</code>找到<code>en_US.UTF-8 UTF-8</code>和<code>zh_CN.UTF-8 UTF-8</code>把前面的<code>#</code>删掉。</li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.22.50.png" width="30%"/></li>
+<li>输入<code>locale-gen</code>，生成locale信息。</li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午10.25.08.png" width="30%"/></li>
+<li>创建locale.conf文件，并编辑LANG变量。<code>echo LANG=en_US.UTF-8 &gt; /etc/locale.conf</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="引导系统"><a href="#引导系统" class="headerlink" title="引导系统"></a>引导系统</h4><p>进行GURB引导</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pacman -S dosfstools grub efibootmgr        <span class="comment">#安装GURB工具</span></span><br><span class="line">grub-install --removable --target=x86_64-efi --efi-directory=/boot/EFI        <span class="comment">#gurb引导安装</span></span><br><span class="line">grub-mkconfig -o /boot/grub/grub.cfg        <span class="comment">#GURB配置</span></span><br></pre></td></tr></table></figure>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.45.43.png" width="70%"/>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.47.00.png" width="70%"/>
+
+<h4 id="设置用户"><a href="#设置用户" class="headerlink" title="设置用户"></a>设置用户</h4><ul>
+<li><p>设置root密码</p>
+<ul>
+<li>输入<code>passwd</code>，再键入密码<code>*****</code>。</li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.50.28.png" width="40%"/></li>
+</ul>
+</li>
+<li><p>建立普通用户</p>
+<ul>
+<li>输入<code>useradd -m -g users -s /bin/bash 用户名</code>新建用户</li>
+<li>输入<code>passwd wezhon</code>为该用户设置密码</li>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.54.19.png" width="50%"/>
+</li>
+</ul>
+</li>
+<li><p>修改<code>/etc/sudoers</code>文件，找到<code>root ALL=(ALL) ALL</code>在下面添加<code>wezhon ALL=(ALL) ALL</code>。不然wezhon用户不能使用<code>sudo</code>。</p>
+<ul>
+<li><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-07 下午11.56.21.png" width="70%"/>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="退出重启"><a href="#退出重启" class="headerlink" title="退出重启"></a>退出重启</h4><p>好了，基本系统安装完毕。输入<code>exit</code>退出系统，再输入<code>reboot</code>重启。<br><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-08 下午2.22.19.png"/><br>看见这个画面就表明我们的系统安装成功。</p>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-08 下午2.24.46.png" width="50%"/>
+
+<p>输入用户名<code>root</code>和你的password。</p>
+<h4 id="连接网络"><a href="#连接网络" class="headerlink" title="连接网络"></a>连接网络</h4><p>可能进入系统后会出现无法联网的状态。使用<code>NetworkManager</code>工具来进行网络连接。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start NetworkManager          <span class="comment">#启动服务</span></span><br><span class="line">systemctl status NetworkManager         <span class="comment">#查看服务状态</span></span><br></pre></td></tr></table></figure>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-08 下午3.42.41.png" width="70%"/>
+
+<h3 id="三、结束"><a href="#三、结束" class="headerlink" title="三、结束"></a>三、结束</h3><img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-08 下午3.49.13.png" width="50%"/>
+
+<p>好看的的<code>screenfetch</code>界面，当初喜欢archlinux就是因为看见很多人都在晒这个截图。</p>
+<p>因为linux不是我的主力机，所以我一般linux都不安装图形界面。所以我的ArchLinux系统就安装完毕啦。</p>
+
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+
+
+      
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wezhon Hsiang</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"nn0YreummlaUFBiDlEMepgN4-gzGzoHsz","appKey":"4lGbmearBDAmcXaPxfoTcpPV","serverURLs":"https://nn0yreum.lc-cn-n1-shared.com","placeholder":"欢迎您给我留言哦","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/%E6%8D%A2%E4%B8%BB%E9%A2%98%E4%B9%8B%E5%89%8D%E7%9A%84%E6%96%87%E7%AB%A0/ArchLinux-install.html",
+      serverURLs: "https://nn0yreum.lc-cn-n1-shared.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
