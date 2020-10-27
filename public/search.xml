@@ -2944,4 +2944,56 @@ $$
         <tag>读书</tag>
       </tags>
   </entry>
+  <entry>
+    <title>第一次参加线下马拉松</title>
+    <url>/%E8%BF%90%E5%8A%A8/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8F%82%E5%8A%A0%E7%BA%BF%E4%B8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE.html</url>
+    <content><![CDATA[<p>疫情过后，最近各种赛事开始慢慢的举办了。很早就想去参加一次马拉松比赛，前段时间在APP上看见大足要举办一场半程马拉松赛。想着离得这么近，就去参加了。</p>
+<a id="more"></a>
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/1431603674642_.pic.jpg" width="50%"/>
+
+<center> 完赛奖牌 </center>
+
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/截屏2020-10-26 上午9.09.43.png"/>
+
+<center>各段成绩</center>
+
+<img src="https://gitee.com/x1angw2/picgomacbook/raw/master/img/4108_H0482_182047.jpg" width="50%"/>
+
+<center>证书&排名</center>
+
+<p>现场的气氛太好了，人山人海的。</p>
+]]></content>
+      <categories>
+        <category>运动</category>
+      </categories>
+      <tags>
+        <tag>大足</tag>
+        <tag>Half Marathon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo自动部署到VPS</title>
+    <url>/%E8%AE%A1%E7%AE%97%E6%9C%BA/Hexo%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0VPS.html</url>
+    <content><![CDATA[<p>在使用了hexo部署网站后，我只需要在本地写好文章，然后<code>hexo g</code>即可在Public文件夹中生成静态文件。但是还是的手动的把Public中的静态网页文件scp到VPS的网站根目录下，非常的麻烦。所以我目前采用的策略是把Public制作成一个Git，在本地生成好Public静态网页后，Git push到Github。然后在服务器Git pull下来。</p>
+<a id="more"></a>
+<p>但是这样依然十分的麻烦，所以写了两个shell脚本。本地端执行一次，服务端执行一次。</p>
+<p>后面了解到Git有一个功能叫做Git hook。只要可以在两个Git下做一个连接，只需要在其中一个Git执行push命令，另一个Git检测到Github的文件发生改变，将自动pull。这样子就只需要一个动作就完成了部署。</p>
+<h4 id="Hexo自动部署插件"><a href="#Hexo自动部署插件" class="headerlink" title="Hexo自动部署插件"></a>Hexo自动部署插件</h4><p>我遇到的问题，其他很多人其实早就遇到了。并且有了成熟的解决方案。Hexo早就提供了自动部署的功能。我只需要执行一条命令就可以把服务器部署到服务器上。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo deploy             #自动部署</span><br><span class="line">        hexo d          #简写</span><br></pre></td></tr></table></figure>
+<p>开始之前，需要在<code>_config.yml</code>修改参数。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">单个地址</span></span><br><span class="line">deploy:</span><br><span class="line">        type:git               </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">多个地址，hexo将依次执行每个deploy</span></span><br><span class="line">deploy:</span><br><span class="line">- type:git</span><br><span class="line">        repo:</span><br><span class="line">deploy:</span><br><span class="line">- type:git</span><br><span class="line">        repo:</span><br></pre></td></tr></table></figure>
+<h4 id="安装hexo-deployer-git"><a href="#安装hexo-deployer-git" class="headerlink" title="安装hexo-deployer-git"></a>安装<code>hexo-deployer-git</code></h4><p>项目地址：<a href="https://github.com/hexojs/hexo-deployer-git">hexo-deployer-git</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#在hexo主目录下执行</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>修改_config.yml</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span>  <span class="string">https://github.com/libaiddd/zdy.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> [<span class="string">branch</span>]</span><br><span class="line">  <span class="attr">message:</span> [<span class="string">message</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># repo:库地址</span></span><br><span class="line"><span class="comment"># branch:分支名称</span></span><br><span class="line"><span class="comment"># message:自定义提交信息</span></span><br><span class="line"><span class="comment">#       通常格式为:Site updated:&#123;&#123;now(&#x27;YYYY-MM-DD HH:mm:ss&#x27;)&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>自动部署</tag>
+      </tags>
+  </entry>
 </search>
